@@ -1,0 +1,34 @@
+<h1>details</h1>
+<section class="container-fluid" id="main-container">
+<div class="table-responsive">
+<table class="table table-sm ">
+    <thead>
+<tr>
+    <th>N° Claim</th>
+    <th>creation Date</th>
+    <th>accident Date</th>
+    <th>status</th>
+    <th>N° Contract</th>
+    <th>modify </th>
+    <th>delete </th>
+    <th>check photos </th>
+    
+</tr>
+</thead>
+<tbody>
+    <tr *ngFor ="let p of claimList">
+        <th>{{p.numClaim}}</th>
+        <th>{{p.accidentDate}}</th>
+        <th>{{p.creationDate}}</th>
+        <th>{{p.status}}</th>
+        <th>{{p.contract.numContract}}</th>
+        <td class="text-center"><button class="btn btn-danger btn-xs "> Modify</button></td>
+        <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteClaim(p.numClaim)"> Delete</button></td>
+        <td class="text-center"><button class="btn btn-danger btn-xs" routerLink="/photo"> Check</button></td>
+        
+    </tr> 
+</table>
+</div> 
+</section>
+
+

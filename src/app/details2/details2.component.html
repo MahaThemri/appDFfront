@@ -1,0 +1,20 @@
+<section class="container-fluid" id="main-container">
+    <div class="table-responsive">
+    <table class="table table-sm ">
+        <thead>
+    <tr>
+        <th>id Photo</th>
+        <th>data</th>
+        
+        
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let p of photoList">
+            <th>{{p.idPhotos}}</th>
+            <img [src]="retrievedImage" />
+            
+        </tr> 
+    </table>
+    </div> 
+    </section>

@@ -1,0 +1,32 @@
+<section class="container-fluid" id="main-container">
+<form>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+    <div class="form-group">
+        <label for="creationDate">insert the creation date</label>
+        <input type="date" name="creationDate" [(ngModel)]="creationDate">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="accidentDate">insert the accident date</label>
+        <input type="date" name="accidentDate" [(ngModel)]="accidentDate">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="status">insert the status</label>
+        <input type="text" name="status" [(ngModel)]="status">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="status">insert the correspondant contract</label>
+        <input type="text" name="status" [(ngModel)]="numContract">
+    </div>
+    <input type="submit" (click)="addingClaim()" >
+    </div>
+</div>
+</div>
+</form>
+</section>
+
+
