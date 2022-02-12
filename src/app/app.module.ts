@@ -12,6 +12,9 @@ import { AddClaimComponent } from './add-claim/add-claim.component';
 import { Details2Component } from './details2/details2.component';
 import { ModifydetailsComponent } from './modifydetails/modifydetails.component';
 import { AddComponent } from './add/add.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -31,6 +34,8 @@ import { AddComponent } from './add/add.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
+
     
   ],
   providers: [],

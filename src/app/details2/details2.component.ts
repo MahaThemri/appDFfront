@@ -20,12 +20,12 @@ export class Details2Component implements OnInit {
    this.service.getPhotos().subscribe(res=>{this.photoList=res;//console.log(res);
 
                 
-                for (let i of this.photoList ){
+              /*  for (let i of this.photoList ){
                   this.base64Data = i.data;
                   console.log(this.base64Data)
                   this.retrievedImage  = 'data:image/png;base64,' + this.base64Data
                   console.log(this.retrievedImage)
-                }
+                }*/
                 /*this.base64Data = this.photoList.data;
                 this.retrievedImage  = 'data:image/png;base64,/' + this.base64Data;*/
               

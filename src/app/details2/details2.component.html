@@ -5,6 +5,8 @@
     <tr>
         <th>id Photo</th>
         <th>data</th>
+        <th>delete</th>
+        <th>modify</th>
         
         
     </tr>
@@ -12,8 +14,10 @@
     <tbody>
         <tr *ngFor ="let p of photoList">
             <th>{{p.idPhotos}}</th>
-            <img [src]="retrievedImage" />
-            
+            <th><img src="{{'data:image/jpeg;base64,'+p.data}}" /></th>
+            <th></th>
+            <th></th>
+
         </tr> 
     </table>
     </div> 

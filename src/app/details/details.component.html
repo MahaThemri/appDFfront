@@ -22,7 +22,7 @@
         <th>{{p.creationDate}}</th>
         <th>{{p.status}}</th>
         <th>{{p.contract.numContract}}</th>
-        <td class="text-center"><button class="btn btn-danger btn-xs "> Modify</button></td>
+        <td class="text-center"><button class="btn btn-danger btn-xs " ><a (click)="open(mymodal,p)"> Modify</a></button></td>
         <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteClaim(p.numClaim)"> Delete</button></td>
         <td class="text-center"><button class="btn btn-danger btn-xs" routerLink="/photo"> Check</button></td>
         
@@ -32,3 +32,54 @@
 </section>
 
 
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">updating the claim with id {{editClaim.numClaim}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #editForm="ngForm">
+            <div class="form-group">
+                <label for="Name"><span class="req">* </span> Claim Id: <small> 
+                   </small></label>
+                <input required type="text" [readonly]="true" ngModel="{{editClaim.numClaim}}" name="numClaim" id="numClaim"
+                    class="form-control phone" maxlength="28" />
+                    </div>
+            <div class="form-group">
+                    <label for="Name"><span class="req">* </span> creation date: <small> insert the new creation date
+                       </small></label>
+                    <input required type="date" ngModel="{{editClaim.creationDate}}" name="creationDate" id="creationDate"
+                        class="form-control phone" maxlength="28" />
+                        </div>
+                        <div class="form-group">
+                    <label for="Name"><span class="req">* </span> accident date: <small> insert the new accident date
+                       </small></label>
+                    <input required type="date"  ngModel="{{editClaim.accidentDate}}" name="accidentDate" id="accidentDate"
+                        class="form-control phone" maxlength="28" />
+                        </div>
+                
+                <div class="form-group">
+                   
+                    <label for="email"> status: </label>
+                    <select class="form-control phone" aria-label="Default select example" name="status" ngModel="{{editClaim.status}}"   >
+                        <option disabled selected >Select the status</option>
+                        <option value="Open">Open</option>
+                        <option value="Adjuster">Adjuster</option>
+                         <option value="Closed">Closed</option>
+                      </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Name"><span class="req">* </span> Contract Id <small> the claim is related to the following contract
+                       </small></label>
+                    <input required type="text"  ngModel="{{editClaim?.contract?.numContract}}" name="numContract" id="numContract"
+                        class="form-control phone" maxlength="28" />
+                        </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="updateClaim(editForm.value)">Update</button>
+    </div>
+  </ng-template>

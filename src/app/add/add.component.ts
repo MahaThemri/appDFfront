@@ -3,6 +3,7 @@ import { Claim } from '../Claim';
 import { Photos } from '../Photos';
 import { Contract } from '../Contract';
 import { claimService } from '../claim.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add',
@@ -23,6 +24,7 @@ export class AddComponent implements OnInit {
   editClaim!: Claim;
   numClaim:any;
 
+
   constructor(private service : claimService) { }
 
   ngOnInit(): void {
@@ -38,7 +40,6 @@ export class AddComponent implements OnInit {
     this.new.status= this.status;
     this.service.addClaim(this.new).subscribe(res=>this.message=res)
   }
-
 
   
 

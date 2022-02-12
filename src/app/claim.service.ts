@@ -77,4 +77,10 @@ export class claimService {
         const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
         return this.http.delete("http://localhost:8888/deleteClaim/"+id,{headers});
     }
+    public deletePhoto(id : number): Observable<any>{
+      let username ="user"
+      let password ="Pass"
+        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+        return this.http.delete("http://localhost:8888/deletePhotos/"+id,{headers});
+    }
   }
