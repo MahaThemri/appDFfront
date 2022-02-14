@@ -15,10 +15,34 @@
         <tr *ngFor ="let p of photoList">
             <th>{{p.idPhotos}}</th>
             <th><img src="{{'data:image/jpeg;base64,'+p.data}}" /></th>
-            <th></th>
-            <th></th>
+            <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deletePhoto(p.idPhotos)"> Delete</button></td>
+            <td class="text-center"><button class="btn btn-danger btn-xs " ><a (click)="open(mymodal,p)"> Modify</a></button></td>
 
         </tr> 
     </table>
     </div> 
     </section>
+
+
+
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <label for="myfile">Select a file:</label>
+<div class="form-group">
+<input type="file" id="myfile"  (change)="changedImage($event)"  name="image_URL"  class="form-control" >
+<img [src]="cardImageBase64" />
+<input type="submit" (click)="upload(idPhotos)" value="upload">
+</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+      </ng-template>

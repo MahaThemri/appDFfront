@@ -38,18 +38,17 @@ export class AddClaimComponent implements OnInit {
   }
 
     
-    public addingPhoto(){
+    /*public addingPhoto(){
       
 
       this.service.addPhotos(this.file).subscribe((data)=>{this.message=data
       console.log(this.message)});
       console.log("nope")
-}
+}*/
 
 
-change($event: any) {
-  this.changeImage = true;
-}
+
+
 changedImage(fileInput: any) {
   this.selectedFile = fileInput.target.files[0];
   console.log("nowwwwww")
@@ -64,23 +63,21 @@ changedImage(fileInput: any) {
     }
   };
   reader.readAsDataURL(fileInput.target.files[0]);
-  // this.selectedFile = event.target.files[0];
-   
-  //console.log(this.selectedFile)
+ 
 }
-upload() {
+/*upload() {
   
   console.log("1111111")
   console.log()
   console.log(this.selectedFile)
   
   //this.currentFileUpload = this.image_URL
-  
+
 this.service.addPhotos(this.selectedFile).subscribe(event => {
  console.log("2222222")
    }
   );
-}
+}*/
 
 }
 

@@ -10,7 +10,7 @@ import { Photos } from './Photos';
     providedIn: 'root'
   })
 export class claimService {
-    
+    public num! : number ;
     constructor(private http: HttpClient) {}
     
 
@@ -26,14 +26,14 @@ export class claimService {
       return this.http.post("http://localhost:8888/addContract",contract);
     }
 
-    public addPhotos(photos : File) :Observable<any>
+    public addPhotos(photos : File, id : number) :Observable<any>
     { const file : FormData= new FormData();
     
       file.append('file', photos);
       let username ="user"
     let password ="Pass"
       const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
-      return this.http.post("http://localhost:8888/upload",file,{headers});
+      return this.http.post("http://localhost:8888/upload/"+id,file,{headers});
     }
 
     public getClaims() : Observable<any>
@@ -56,11 +56,11 @@ export class claimService {
 
 
 
-    public getPhotos():Observable<any>
+    public getPhotos(id : number):Observable<any>
     {let username ="user"
     let password ="Pass"
       const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-      return this.http.get("http://localhost:8888/getPhotos",{headers});
+      return this.http.get("http://localhost:8888/getPhotos/"+id,{headers});
     }
   
 
@@ -83,4 +83,17 @@ export class claimService {
         const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
         return this.http.delete("http://localhost:8888/deletePhotos/"+id,{headers});
     }
+
+    public updatePhoto(photos : File,id : number): Observable<any>{
+      const file : FormData= new FormData();
+    
+      file.append('file', photos);
+      let username ="user"
+      let password ="Pass"
+        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+        return this.http.put("http://localhost:8888/modifyPhotos/"+id,file,{headers});
+
+    }
+
+   
   }

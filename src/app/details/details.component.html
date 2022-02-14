@@ -1,4 +1,4 @@
-<h1>details</h1>
+<h1>details</h1> <td class="text-center"><button class="btn btn-danger btn-xs" routerLink="/claim"> add a new Claim ?</button></td>
 <section class="container-fluid" id="main-container">
 <div class="table-responsive">
 <table class="table table-sm ">
@@ -24,7 +24,8 @@
         <th>{{p.contract.numContract}}</th>
         <td class="text-center"><button class="btn btn-danger btn-xs " ><a (click)="open(mymodal,p)"> Modify</a></button></td>
         <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteClaim(p.numClaim)"> Delete</button></td>
-        <td class="text-center"><button class="btn btn-danger btn-xs" routerLink="/photo"> Check</button></td>
+        <td class="text-center"><button class="btn btn-danger btn-xs" (click)="gettingId(p.numClaim)"routerLink="/photo"> Check</button></td>
+        <td class="text-center"><button class="btn btn-danger btn-xs" (click)="open2(mymodal2,p.numClaim)"> add Photos </button></td>
         
     </tr> 
 </table>
@@ -81,5 +82,28 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="updateClaim(editForm.value)">Update</button>
+    </div>
+  </ng-template>
+
+
+  <ng-template #mymodal2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form name="form">
+            <label for="myfile">Select a file:</label>
+            <div class="form-group">
+            <input type="file" id="myfile"  (change)="changedImage($event)"  name="image_URL"  class="form-control" [(ngModel)]="image_URL">
+            <img [src]="cardImageBase64" />
+            <input type="submit" (click)="upload()" value="upload">
+            </div>
+            </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
     </div>
   </ng-template>

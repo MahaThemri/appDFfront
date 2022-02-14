@@ -1,11 +1,12 @@
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Claim } from '../Claim';
 
 import { claimService } from '../claim.service';
 import { Contract } from '../Contract';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
@@ -13,6 +14,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+
+  @Output() requested = new EventEmitter<Number>();
 
   
   constructor(private service : claimService,private modalService: NgbModal) { }
@@ -25,6 +28,29 @@ export class DetailsComponent implements OnInit {
   idClaim!: number;
   closeResult: string = '';
   numContract :number=0;
+  idC! : number;
+  imageFile : any;
+  numClaim : number =0;
+  file!: File;
+  image_URL:any;
+  event:any;
+  name:string="";
+  reactiveForm : any= FormGroup;
+  form : any;
+  id! : number ;
+  addedClaim! : Claim;
+  num! : number ;
+
+ 
+
+
+  title = 'File-Upload-Save';
+  selectedFile!:File;
+  currentFileUpload: File=new File([],"");
+  progress: { percentage: number } = { percentage: 0 };
+  changeImage = false;
+
+  cardImageBase64: string="";
 
   ngOnInit(): void {
 
@@ -72,6 +98,16 @@ export class DetailsComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
     } 
+
+    open2(content:any,id : number) {
+      console.log(id)
+      this.num=id;
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    } 
   
     private getDismissReason(reason: any): string {
       if (reason === ModalDismissReasons.ESC) {
@@ -81,6 +117,45 @@ export class DetailsComponent implements OnInit {
       } else {
         return  `with: ${reason}`;
       }
+    }
+    
+
+    changedImage(fileInput: any) {
+      this.selectedFile = fileInput.target.files[0];
+      console.log("nowwwwww")
+      const reader = new FileReader();
+        
+      reader.onload=(e:any)=>{
+        const image = new Image();
+        image.src= e.target.result;
+        image.onload= rs=>{
+          const imgBase64Path = e.target.result;
+                            this.cardImageBase64 = imgBase64Path;
+        }
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+     
+    }
+
+
+    upload() {
+  
+      console.log("1111111")
+      console.log()
+      console.log(this.selectedFile)
+      
+      //this.currentFileUpload = this.image_URL
+    
+    this.service.addPhotos(this.selectedFile,this.num).subscribe(event => {
+     console.log("2222222")
+       }
+      );
+    }
+
+
+    public gettingId(id : number ){
+      this.service.num = id ;
+
     }
     
   }
